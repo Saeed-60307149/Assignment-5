@@ -95,6 +95,19 @@ function addWord() {
     const input = document.getElementById('newWord');
     const word = input.value.trim().toUpperCase();
 
+    if (!word) {
+        alert('Cannot add empty word!');
+        return;
+    }
+    if (!/^[A-Z]+$/.test(word)) {
+        alert('Word must contain only uppercase letters (A-Z).');
+        return;
+    }
+    if (wordBank.includes(word)) {
+        alert('Word already exists!');
+        return;
+    }
+
     wordBank.push(word);
     input.value = '';
     saveWordBank();
