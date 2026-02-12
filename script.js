@@ -131,6 +131,7 @@ function editWord(index) {
     wordBank[index] = word;
     saveWordBank();
     displayWordBank();
+    
 }
 
 function deleteWord(index) {
