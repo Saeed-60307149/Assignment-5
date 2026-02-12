@@ -26,13 +26,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function toggleTheme() {
     const themeIcon = document.querySelector('.theme-icon');
-    
-    if (themeIcon.textContent === '🌙') {
+    const body = document.body;
+
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.add('dark-mode');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadWordBank();
+    generateKeyboard();
+
+
+    const savedTheme = localStorage.getItem('theme');
+    const themeIcon = document.querySelector('.theme-icon');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
         themeIcon.textContent = '☀️';
     } else {
         themeIcon.textContent = '🌙';
     }
-}
+});
+
 
 function switchTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
